@@ -87,6 +87,8 @@ public abstract class NumbersUtil  {
 	private static LanguageScheme selectLanguage(Languages lingo) {
 		if (lingo.equals(Languages.PL))
 			return new Polish();	
+		else if (lingo.equals(Languages.US))
+			return new American();
 		else
 			return null;
 	}

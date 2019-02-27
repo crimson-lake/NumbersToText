@@ -87,7 +87,7 @@ public class Polish extends LanguageScheme {
 		sextillions.put("genitiveCase", "trylionów ");
 
 		cardinalNumbers = new HashMap<>();
-		cardinalNumbers.put(1L, currency);
+		//cardinalNumbers.put(1L, currency);
 		cardinalNumbers.put(1_000L, thousands);
 		cardinalNumbers.put(1_000_000L, millions);
 		cardinalNumbers.put(1_000_000_000L, billions);
