@@ -52,9 +52,14 @@ public abstract class NumbersUtil  {
 		state = true;
 	}
 	
-	private static void assignCurrencyText(long number, long i) {
+	private static void assignCurrencyText(long number, long i, long NUMBER) {
 		if (isCurrencyNeeded(number, i)) {
-			setCurrency("genitiveCase");
+			if (NUMBER == 1) 
+				setCurrency("singular");
+			else if (digit > 1 && digit < 5) 
+				setCurrency("plural");
+			else 
+				setCurrency("genitiveCase");
 		}
 	}
 	
@@ -108,8 +113,7 @@ public abstract class NumbersUtil  {
 				else
 					assignTextToDigit();
 				assignCardinalNumberText(number, i);
-				if (NUMBER > 1000)
-					assignCurrencyText(number, i);
+				assignCurrencyText(number, i, NUMBER);
 				teen = false;
 			}
 			number = moveToNextDigit(number, i);
