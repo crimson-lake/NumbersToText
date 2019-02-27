@@ -1,7 +1,5 @@
 package pl.zielinska.library;
 
-import java.util.HashMap;
-
 public abstract class NumbersUtil  {
 	private static StringBuilder text = new StringBuilder();
 	private static int digit;
@@ -86,8 +84,15 @@ public abstract class NumbersUtil  {
 			triple = 0;
 	}
 	
-	public static String textValue(long number) {
-		language = new Polish();
+	private static LanguageScheme selectLanguage(Languages lingo) {
+		if (lingo.equals(Languages.PL))
+			return new Polish();	
+		else
+			return null;
+	}
+	
+	public static String textValue(Languages lingo, long number) {
+		language = selectLanguage(lingo);
 		final long NUMBER = number;
 		for (long i = 1_000_000_000_000_000_000L; i > 0; i = i / 10) {
 			positionCount++;
