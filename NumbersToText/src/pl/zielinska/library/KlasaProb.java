@@ -4,7 +4,7 @@ public class KlasaProb {
 
 	public static void main(String[] args) {
 		long p = System.currentTimeMillis();
-		String wynik = NumbersUtil.textValue(Languages.US, 100001L);
+		String wynik = NumbersUtil.textValue(Languages.PL, 1L);
 		System.out.println(wynik);
 		long k = System.currentTimeMillis();
 		System.out.printf("t = %d\n", k - p);

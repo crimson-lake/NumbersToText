@@ -13,9 +13,64 @@ public abstract class NumbersUtil  {
 		throw new IllegalStateException("Utility class");
 	}
 	
+	public static String textValue(Languages lingo, long number) {
+		language = selectLanguage(lingo);
+		convertNumberToText(number);
+		return text.toString();
+	}
+	
+	private static LanguageScheme selectLanguage(Languages lingo) {
+		switch (lingo) {
+			case PL: 
+				return new Polish();
+			case US: 
+				return new American();
+			default:
+				return null;
+		}	
+	}
+	
+	private static void convertNumberToText(long number) {
+		final long NUMBER = number;
+		final long maxLongSignificantDigit = 1_000_000_000_000_000_000L;
+		final long minLongSignificantDigit = 1L;
+		long currentDigitPosition = maxLongSignificantDigit;
+		while (currentDigitPosition >= minLongSignificantDigit) {
+			positionCount++;
+			getDigit(number, currentDigitPosition);
+			addToTriple();
+			if (isTeen())
+				teen = true;
+			else if (isDigitOfANumber()) {
+				if (teen)
+					assignTextToTeen();
+				else
+					assignTextToDigit();
+				assignCardinalNumberText(currentDigitPosition);
+				assignCurrencyText(number, currentDigitPosition, NUMBER);
+				teen = false;
+			}
+			number = moveToNextDigit(number, currentDigitPosition);
+			resetTriple();
+			resetPositionCount();
+			currentDigitPosition = nextSignificantDigitPosition(currentDigitPosition);
+		}
+	}
+	
+	private static long nextSignificantDigitPosition(long currentDigitPosition) {
+		return currentDigitPosition/10;
+	}
+	
+	private static void getDigit(long number, long currentDigitPosition) {
+		digit = (int) (number / currentDigitPosition);
+	}
+	
+	private static void addToTriple() {
+		triple += digit * (int) Math.pow(10, 3 - positionCount);
+	}
+	
 	private static boolean isTeen() {
 		return positionCount == 2 && digit == 1L;
-
 	}
 	
 	private static boolean isDigitOfANumber() {
@@ -31,29 +86,25 @@ public abstract class NumbersUtil  {
 		text.append(language.positions.get(positionCount).get(digit));
 	}
 	
-	private static void assignCardinalNumberText(long number, long i) {
-		if (language.cardinalNumbers.containsKey(i)) {
+	private static void assignCardinalNumberText(long currentDigitPosition) {
+		if (language.cardinalNumbers.containsKey(currentDigitPosition)) {
 			if (triple == 1) 
-				setCardinal("singular", i);
+				setCardinal("singular", currentDigitPosition);
 			else if (digit > 1 && digit < 5) 
-				setCardinal("plural", i);
+				setCardinal("plural", currentDigitPosition);
 			else if (triple == 0) {}
 			else 
-				setCardinal("genitiveCase", i);
+				setCardinal("genitiveCase", currentDigitPosition);
 		}
 	}
 	
-	private static void setCardinal(String form, long i) {
-		text.append(language.cardinalNumbers.get(i).get(form));
+	private static void setCardinal(String form, long currentDigitPosition) {
+		text.append(language.cardinalNumbers.get(currentDigitPosition).get(form));
 	}
 	
-	private static void setCurrency(String form) {
-		text.append(language.currency.get(form));
-		state = true;
-	}
 	
-	private static void assignCurrencyText(long number, long i, long NUMBER) {
-		if (isCurrencyNeeded(number, i)) {
+	private static void assignCurrencyText(long number, long currentDigitPosition, long NUMBER) {
+		if (isCurrencyNeeded(number, currentDigitPosition)) {
 			if (NUMBER == 1) 
 				setCurrency("singular");
 			else if (digit > 1 && digit < 5) 
@@ -63,16 +114,17 @@ public abstract class NumbersUtil  {
 		}
 	}
 	
-	private static boolean isCurrencyNeeded(long number, long i) {
-		return  positionCount == 3 && !state && number % i == 0;
+	private static boolean isCurrencyNeeded(long number, long currentDigitPosition) {
+		return  positionCount == 3 && !state && number % currentDigitPosition == 0;
 	}
 	
-	private static void getDigit(long number, long i) {
-		digit = (int) (number / i);
+	private static void setCurrency(String form) {
+		text.append(language.currency.get(form));
+		state = true;
 	}
 	
-	private static long moveToNextDigit(long number, long i) {
-		return number - digit * i;
+	private static long moveToNextDigit(long number, long currentDigitPosition) {
+		return number - digit*currentDigitPosition;
 	}
 	
 	private static void resetPositionCount() {
@@ -80,46 +132,9 @@ public abstract class NumbersUtil  {
 			positionCount = 0;
 	}
 	
-	private static void addToTriple() {
-		triple += digit * (int) Math.pow(10, 3-positionCount);
-	}
 	
 	private static void resetTriple() {
 		if (positionCount == 3)
 			triple = 0;
-	}
-	
-	private static LanguageScheme selectLanguage(Languages lingo) {
-		if (lingo.equals(Languages.PL))
-			return new Polish();	
-		else if (lingo.equals(Languages.US))
-			return new American();
-		else
-			return null;
-	}
-	
-	public static String textValue(Languages lingo, long number) {
-		language = selectLanguage(lingo);
-		final long NUMBER = number;
-		for (long i = 1_000_000_000_000_000_000L; i > 0; i = i / 10) {
-			positionCount++;
-			getDigit(number, i);
-			addToTriple();
-			if (isTeen())
-				teen = true;
-			else if (isDigitOfANumber()) {
-				if (teen)
-					assignTextToTeen();
-				else
-					assignTextToDigit();
-				assignCardinalNumberText(number, i);
-				assignCurrencyText(number, i, NUMBER);
-				teen = false;
-			}
-			number = moveToNextDigit(number, i);
-			resetTriple();
-			resetPositionCount();
-		}
-		return text.toString();
 	}
 }
