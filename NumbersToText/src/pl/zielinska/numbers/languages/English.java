@@ -51,5 +51,15 @@ abstract class English extends LanguageScheme {
 		hundreds.put(7, "seven hundred ");
 		hundreds.put(8, "eight hundred ");
 		hundreds.put(9, "nine hundred ");
+		
+		thousands = new HashMap<>();
+		thousands.put("singular", "thousand ");
+		thousands.put("plural", "thousands ");
+		thousands.put("genitiveCase", "thousands ");
+
+		millions = new HashMap<>();
+		millions.put("singular", "milion ");
+		millions.put("plural", "millions ");
+		millions.put("genitiveCase", "milions ");
 	}
 }

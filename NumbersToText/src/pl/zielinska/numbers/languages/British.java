@@ -2,35 +2,35 @@ package pl.zielinska.numbers.languages;
 
 import java.util.HashMap;
 
-public class American extends English{
+public class British extends English{
 	
-	public American() {
+	public British() {
 		super();
 		
 		currency = new HashMap<>();
-		currency.put("singular", "dollar");
-		currency.put("plural", "dollars");
-		currency.put("genitiveCase", "dollars");
-
+		currency.put("singular", "pound");
+		currency.put("plural", "pounds");
+		currency.put("genitiveCase", "pounds");
+		
 		billions = new HashMap<>();
-		billions.put("singular", "billion ");
-		billions.put("plural", "billions ");
-		billions.put("genitiveCase", "billions ");
+		billions.put("singular", "miliard ");
+		billions.put("plural", "miliards ");
+		billions.put("genitiveCase", "miliards ");
 
 		trillions = new HashMap<>();
-		trillions.put("singular", "trillion ");
-		trillions.put("plural", "trillions ");
-		trillions.put("genitiveCase", "trillions ");
+		trillions.put("singular", "billion ");
+		trillions.put("plural", "billions ");
+		trillions.put("genitiveCase", "billions ");
 
 		quadrillions = new HashMap<>();
-		quadrillions.put("singular", "quadrillion ");
-		quadrillions.put("plural", "quadrillions ");
-		quadrillions.put("genitiveCase", "quadrillions ");
+		quadrillions.put("singular", "billiard ");
+		quadrillions.put("plural", "billiards ");
+		quadrillions.put("genitiveCase", "billiards ");
 
 		sextillions = new HashMap<>();
-		sextillions.put("singular", "sextillion ");
-		sextillions.put("plural", "sextillions ");
-		sextillions.put("genitiveCase", "sextillions ");
+		sextillions.put("singular", "trillion ");
+		sextillions.put("plural", "trillions ");
+		sextillions.put("genitiveCase", "trillions ");
 
 		cardinalNumbers = new HashMap<>();
 		cardinalNumbers.put(1_000L, thousands);
@@ -45,5 +45,4 @@ public class American extends English{
 		positions.put(2, tens);
 		positions.put(3, units);
 	}
-	
 }

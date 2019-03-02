@@ -1,6 +1,7 @@
 package pl.zielinska.numbers.util;
 
 import pl.zielinska.numbers.languages.American;
+import pl.zielinska.numbers.languages.British;
 import pl.zielinska.numbers.languages.LanguageScheme;
 import pl.zielinska.numbers.languages.Languages;
 import pl.zielinska.numbers.languages.Polish;
@@ -30,6 +31,8 @@ public abstract class NumbersUtil  {
 				return new Polish();
 			case US: 
 				return new American();
+			case GB:
+				return new British();
 			default:
 				return null;
 		}	
