@@ -9,19 +9,23 @@ public abstract class LanguageScheme {
 	protected Map<Integer, Map<Integer, String>> positions;
 	
 
-	public Map<Integer, String> getTeens() {
-		return teens;
+	public String getTeens(int i) {
+		return teens.get(i);
 	}
 
-	public Map<String, String> getCurrency() {
-		return currency;
+	public String getCurrency(String s) {
+		return currency.get(s);
 	}
 	
 	public Map<Long, Map<String, String>> getCardinalNumbers() {
 		return cardinalNumbers;
 	}
 	
-	public Map<Integer, Map<Integer, String>> getPositions() {
-		return positions;
+	public Map<String, String> getCardinalNumbers(long i) {
+		return cardinalNumbers.get(i);
+	}
+	
+	public Map<Integer, String> getPositions(int i) {
+		return positions.get(i);
 	}
 }

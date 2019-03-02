@@ -84,11 +84,11 @@ public abstract class NumbersUtil  {
 	
 	private static void assignTextToTeen() {
 		final int key = 10 + digit;
-		text.append(language.getTeens().get(key));
+		text.append(language.getTeens(key));
 	}
 
 	private static void assignTextToDigit() {
-		text.append(language.getPositions().get(positionCount).get(digit));
+		text.append(language.getPositions(positionCount).get(digit));
 	}
 	
 	private static void assignCardinalNumberText(long currentDigitPosition) {
@@ -103,14 +103,14 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static void setCardinal(String form, long currentDigitPosition) {
-		text.append(language.getCardinalNumbers().get(currentDigitPosition).get(form));
+		text.append(language.getCardinalNumbers(currentDigitPosition).get(form));
 	}
 		
 	private static void assignCurrencyText(long number, long currentDigitPosition, long NUMBER) {
 		if (isCurrencyNeeded(number, currentDigitPosition)) {
 			if (NUMBER == 1) 
 				setCurrency("singular");
-			else if (digit > 1 && digit < 5) 
+			else if (digit > 1 && digit < 5 && !teen) 
 				setCurrency("plural");
 			else 
 				setCurrency("genitiveCase");
@@ -122,7 +122,7 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static void setCurrency(String form) {
-		text.append(language.getCurrency().get(form));
+		text.append(language.getCurrency(form));
 		state = true;
 	}
 	
