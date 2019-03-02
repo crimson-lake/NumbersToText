@@ -1,4 +1,4 @@
-package pl.zielinska.library;
+package pl.zielinska.numbers.languages;
 
 import java.util.HashMap;
 

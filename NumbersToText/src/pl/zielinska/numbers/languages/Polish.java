@@ -1,10 +1,10 @@
-package pl.zielinska.library;
+package pl.zielinska.numbers.languages;
 
 import java.util.HashMap;
 
-class Polish extends LanguageScheme {
+public class Polish extends LanguageScheme {
 	
-	Polish() {
+	public Polish() {
 		units = new HashMap<>();
 		units.put(0, "");
 		units.put(1, "jeden ");

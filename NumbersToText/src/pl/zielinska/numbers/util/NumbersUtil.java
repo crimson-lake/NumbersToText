@@ -1,4 +1,9 @@
-package pl.zielinska.library;
+package pl.zielinska.numbers.util;
+
+import pl.zielinska.numbers.languages.American;
+import pl.zielinska.numbers.languages.LanguageScheme;
+import pl.zielinska.numbers.languages.Languages;
+import pl.zielinska.numbers.languages.Polish;
 
 public abstract class NumbersUtil  {
 	private static StringBuilder text = new StringBuilder();
@@ -79,27 +84,26 @@ public abstract class NumbersUtil  {
 	
 	private static void assignTextToTeen() {
 		final int key = 10 + digit;
-		text.append(language.teens.get(key));
+		text.append(language.getTeens().get(key));
 	}
 
 	private static void assignTextToDigit() {
-		text.append(language.positions.get(positionCount).get(digit));
+		text.append(language.getPositions().get(positionCount).get(digit));
 	}
 	
 	private static void assignCardinalNumberText(long currentDigitPosition) {
-		if (language.cardinalNumbers.containsKey(currentDigitPosition)) {
+		if (language.getCardinalNumbers().containsKey(currentDigitPosition)) {
 			if (triple == 1) 
 				setCardinal("singular", currentDigitPosition);
 			else if (digit > 1 && digit < 5) 
 				setCardinal("plural", currentDigitPosition);
-			else if (triple == 0) {}
-			else 
+			else if (triple != 0)
 				setCardinal("genitiveCase", currentDigitPosition);
 		}
 	}
 	
 	private static void setCardinal(String form, long currentDigitPosition) {
-		text.append(language.cardinalNumbers.get(currentDigitPosition).get(form));
+		text.append(language.getCardinalNumbers().get(currentDigitPosition).get(form));
 	}
 		
 	private static void assignCurrencyText(long number, long currentDigitPosition, long NUMBER) {
@@ -118,7 +122,7 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static void setCurrency(String form) {
-		text.append(language.currency.get(form));
+		text.append(language.getCurrency().get(form));
 		state = true;
 	}
 	

@@ -1,10 +1,10 @@
-package pl.zielinska.library;
+package pl.zielinska.numbers.languages;
 
 import java.util.HashMap;
 
-class American extends English{
+public class American extends English{
 	
-	American() {
+	public American() {
 		super();
 		
 		currency = new HashMap<>();
