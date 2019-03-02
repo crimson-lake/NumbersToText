@@ -2,9 +2,9 @@ package pl.zielinska.library;
 
 import java.util.HashMap;
 
-public abstract class English extends LanguageScheme {
+abstract class English extends LanguageScheme {
 	
-	public English() {
+	English() {
 		units = new HashMap<>();
 		units.put(0, "");
 		units.put(1, "one ");

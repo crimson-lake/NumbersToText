@@ -2,8 +2,9 @@ package pl.zielinska.library;
 
 import java.util.HashMap;
 
-public class Polish extends LanguageScheme {
-	public Polish() {
+class Polish extends LanguageScheme {
+	
+	Polish() {
 		units = new HashMap<>();
 		units.put(0, "");
 		units.put(1, "jeden ");

@@ -101,8 +101,7 @@ public abstract class NumbersUtil  {
 	private static void setCardinal(String form, long currentDigitPosition) {
 		text.append(language.cardinalNumbers.get(currentDigitPosition).get(form));
 	}
-	
-	
+		
 	private static void assignCurrencyText(long number, long currentDigitPosition, long NUMBER) {
 		if (isCurrencyNeeded(number, currentDigitPosition)) {
 			if (NUMBER == 1) 
@@ -131,7 +130,6 @@ public abstract class NumbersUtil  {
 		if (positionCount == 3)
 			positionCount = 0;
 	}
-	
 	
 	private static void resetTriple() {
 		if (positionCount == 3)

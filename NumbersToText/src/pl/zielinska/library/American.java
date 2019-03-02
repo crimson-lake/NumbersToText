@@ -2,9 +2,9 @@ package pl.zielinska.library;
 
 import java.util.HashMap;
 
-public class American extends English{
+class American extends English{
 	
-	public American() {
+	American() {
 		super();
 		
 		currency = new HashMap<>();
