@@ -12,7 +12,6 @@ public abstract class NumbersUtil  {
 	private static int triple;
 	private static int positionCount = 2;
 	private static boolean teen = false;
-	private static boolean state = false;
 	private static LanguageScheme language;
 	
 	private NumbersUtil() {
@@ -55,14 +54,16 @@ public abstract class NumbersUtil  {
 				else
 					assignTextToDigit();
 				assignCardinalNumberText(currentDigitPosition);
-				assignCurrencyText(number, currentDigitPosition, NUMBER);
+				if (currentDigitPosition == minLongSignificantDigit)
+					break;
 				teen = false;
 			}
 			number = moveToNextDigit(number, currentDigitPosition);
-			resetTriple();
-			resetPositionCount();
+			resetTripleAndPositionCount();
 			currentDigitPosition = nextSignificantDigitPosition(currentDigitPosition);
 		}
+		deleteSpareComma();
+		assignCurrencyText(NUMBER);
 	}
 	
 	private static long nextSignificantDigitPosition(long currentDigitPosition) {
@@ -129,37 +130,32 @@ public abstract class NumbersUtil  {
 		text.append(language.getCardinalNumbers(currentDigitPosition, form));
 	}
 		
-	private static void assignCurrencyText(long number, long currentDigitPosition, long NUMBER) {
-		if (isCurrencyNeeded(number, currentDigitPosition)) {
-			if (NUMBER == 1) 
-				addCurrency("singular");
-			else if (digit > 1 && digit < 5 && !teen) 
-				addCurrency("plural");
-			else 
-				addCurrency("genitiveCase");
-		}
-	}
-	
-	private static boolean isCurrencyNeeded(long number, long currentDigitPosition) {
-		return  positionCount == 3 && !state && number % currentDigitPosition == 0;
+	private static void assignCurrencyText(long NUMBER) {
+		if (NUMBER == 1) 
+			addCurrency("singular");
+		else if (digit > 1 && digit < 5 && !teen) 
+			addCurrency("plural");
+		else 
+			addCurrency("genitiveCase");
 	}
 	
 	private static void addCurrency(String form) {
 		text.append(language.getCurrency(form));
-		state = true;
 	}
 	
 	private static long moveToNextDigit(long number, long currentDigitPosition) {
 		return number - digit*currentDigitPosition;
 	}
 	
-	private static void resetPositionCount() {
-		if (positionCount == 3)
-			positionCount = 0;
-	}
-	
-	private static void resetTriple() {
-		if (positionCount == 3)
+	private static void resetTripleAndPositionCount() {
+		if (positionCount == 3) {
 			triple = 0;
+			positionCount = 0;
+		}
+	}
+
+	private static void deleteSpareComma() {
+		if (text.charAt(text.length() - 2) == ',')
+			text.deleteCharAt(text.length() - 2);
 	}
 }

@@ -12,16 +12,16 @@ public class British extends English{
 		currency.put(PLURAL, "pounds");
 		
 		billions = new HashMap<>();
-		billions.put(SINGULAR, "miliard ");
+		billions.put(SINGULAR, "miliard, ");
 
 		trillions = new HashMap<>();
-		trillions.put(SINGULAR, "billion ");
+		trillions.put(SINGULAR, "billion, ");
 
 		quadrillions = new HashMap<>();
-		quadrillions.put(SINGULAR, "billiard ");
+		quadrillions.put(SINGULAR, "billiard, ");
 
 		sextillions = new HashMap<>();
-		sextillions.put(SINGULAR, "trillion ");
+		sextillions.put(SINGULAR, "trillion, ");
 
 		cardinalNumbers = new HashMap<>();
 		cardinalNumbers.put(1_000L, thousands);

@@ -53,10 +53,10 @@ abstract class English extends LanguageScheme {
 		hundreds.put(9, "nine hundred and ");
 		
 		thousands = new HashMap<>();
-		thousands.put(SINGULAR, "thousand ");
+		thousands.put(SINGULAR, "thousand, ");
 
 		millions = new HashMap<>();
-		millions.put(SINGULAR, "million ");
+		millions.put(SINGULAR, "million, ");
 
 		positions = new HashMap<>();
 		positions.put(1, hundreds);
