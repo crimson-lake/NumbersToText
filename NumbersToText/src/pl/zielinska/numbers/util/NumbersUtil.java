@@ -97,26 +97,26 @@ public abstract class NumbersUtil  {
 	private static void assignCardinalNumberText(long currentDigitPosition) {
 		if (language.getCardinalNumbers().containsKey(currentDigitPosition)) {
 			if (triple == 1) 
-				setCardinal("singular", currentDigitPosition);
+				addCardinal("singular", currentDigitPosition);
 			else if (digit > 1 && digit < 5) 
-				setCardinal("plural", currentDigitPosition);
+				addCardinal("plural", currentDigitPosition);
 			else if (triple != 0)
-				setCardinal("genitiveCase", currentDigitPosition);
+				addCardinal("genitiveCase", currentDigitPosition);
 		}
 	}
 	
-	private static void setCardinal(String form, long currentDigitPosition) {
-		text.append(language.getCardinalNumbers(currentDigitPosition).get(form));
+	private static void addCardinal(String form, long currentDigitPosition) {
+		text.append(language.getCardinalNumbers(currentDigitPosition, form));
 	}
 		
 	private static void assignCurrencyText(long number, long currentDigitPosition, long NUMBER) {
 		if (isCurrencyNeeded(number, currentDigitPosition)) {
 			if (NUMBER == 1) 
-				setCurrency("singular");
+				addCurrency("singular");
 			else if (digit > 1 && digit < 5 && !teen) 
-				setCurrency("plural");
+				addCurrency("plural");
 			else 
-				setCurrency("genitiveCase");
+				addCurrency("genitiveCase");
 		}
 	}
 	
@@ -124,7 +124,7 @@ public abstract class NumbersUtil  {
 		return  positionCount == 3 && !state && number % currentDigitPosition == 0;
 	}
 	
-	private static void setCurrency(String form) {
+	private static void addCurrency(String form) {
 		text.append(language.getCurrency(form));
 		state = true;
 	}

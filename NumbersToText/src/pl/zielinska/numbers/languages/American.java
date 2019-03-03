@@ -10,27 +10,22 @@ public class American extends English{
 		currency = new HashMap<>();
 		currency.put(SINGULAR, "dollar");
 		currency.put(PLURAL, "dollars");
-		currency.put(GENITIVE_CASE, "dollars");
 
 		billions = new HashMap<>();
 		billions.put(SINGULAR, "billion ");
 		billions.put(PLURAL, "billions ");
-		billions.put(GENITIVE_CASE, "billions ");
 
 		trillions = new HashMap<>();
 		trillions.put(SINGULAR, "trillion ");
 		trillions.put(PLURAL, "trillions ");
-		trillions.put(GENITIVE_CASE, "trillions ");
 
 		quadrillions = new HashMap<>();
 		quadrillions.put(SINGULAR, "quadrillion ");
 		quadrillions.put(PLURAL, "quadrillions ");
-		quadrillions.put(GENITIVE_CASE, "quadrillions ");
 
 		sextillions = new HashMap<>();
 		sextillions.put(SINGULAR, "sextillion ");
 		sextillions.put(PLURAL, "sextillions ");
-		sextillions.put(GENITIVE_CASE, "sextillions ");
 
 		cardinalNumbers = new HashMap<>();
 		cardinalNumbers.put(1_000L, thousands);

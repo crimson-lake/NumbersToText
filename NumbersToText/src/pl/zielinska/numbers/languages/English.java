@@ -53,13 +53,28 @@ abstract class English extends LanguageScheme {
 		hundreds.put(9, "nine hundred ");
 		
 		thousands = new HashMap<>();
-		thousands.put("singular", "thousand ");
-		thousands.put("plural", "thousands ");
-		thousands.put("genitiveCase", "thousands ");
+		thousands.put(SINGULAR, "thousand ");
+		thousands.put(PLURAL, "thousands ");
 
 		millions = new HashMap<>();
-		millions.put("singular", "milion ");
-		millions.put("plural", "millions ");
-		millions.put("genitiveCase", "milions ");
+		millions.put(SINGULAR, "milion ");
+		millions.put(PLURAL, "millions ");
+	}
+	
+	@Override
+	public String getCardinalNumbers(long i, String form) {
+		return cardinalNumbers.get(i).get(SINGULAR);
+	}
+	
+	@Override
+	public String getCurrency(String s) {
+		switch (s) {
+			case SINGULAR:
+				return currency.get(s);
+			case GENITIVE_CASE:
+				return currency.get(PLURAL);
+			default:
+				return null;
+		}
 	}
 }
