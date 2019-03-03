@@ -42,23 +42,26 @@ abstract class English extends LanguageScheme {
 
 		hundreds = new HashMap<>();
 		hundreds.put(0, "");
-		hundreds.put(1, "one hundred ");
-		hundreds.put(2, "two hundred ");
-		hundreds.put(3, "three hundred ");
-		hundreds.put(4, "four hundred ");
-		hundreds.put(5, "five hundred ");
-		hundreds.put(6, "six hundred ");
-		hundreds.put(7, "seven hundred ");
-		hundreds.put(8, "eight hundred ");
-		hundreds.put(9, "nine hundred ");
+		hundreds.put(1, "one hundred and ");
+		hundreds.put(2, "two hundred and ");
+		hundreds.put(3, "three hundred and ");
+		hundreds.put(4, "four hundred and ");
+		hundreds.put(5, "five hundred and ");
+		hundreds.put(6, "six hundred and ");
+		hundreds.put(7, "seven hundred and ");
+		hundreds.put(8, "eight hundred and ");
+		hundreds.put(9, "nine hundred and ");
 		
 		thousands = new HashMap<>();
 		thousands.put(SINGULAR, "thousand ");
-		thousands.put(PLURAL, "thousands ");
 
 		millions = new HashMap<>();
-		millions.put(SINGULAR, "milion ");
-		millions.put(PLURAL, "millions ");
+		millions.put(SINGULAR, "million ");
+
+		positions = new HashMap<>();
+		positions.put(1, hundreds);
+		positions.put(2, tens);
+		positions.put(3, units);
 	}
 	
 	@Override
@@ -70,6 +73,7 @@ abstract class English extends LanguageScheme {
 	public String getCurrency(String s) {
 		switch (s) {
 			case SINGULAR:
+			case PLURAL:
 				return currency.get(s);
 			case GENITIVE_CASE:
 				return currency.get(PLURAL);

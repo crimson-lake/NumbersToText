@@ -28,7 +28,7 @@ public abstract class LanguageScheme {
 		return cardinalNumbers.get(i).get(form);
 	}
 	
-	public Map<Integer, String> getPositions(int i) {
-		return positions.get(i);
+	public String getDigit(int i, int digit) {
+		return positions.get(i).get(digit);
 	}
 }

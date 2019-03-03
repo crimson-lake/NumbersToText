@@ -78,7 +78,7 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static boolean isTeen() {
-		return positionCount == 2 && digit == 1L;
+		return positionCount == 2 && digit == 1;
 	}
 	
 	private static boolean isDigitOfANumber() {
@@ -91,7 +91,27 @@ public abstract class NumbersUtil  {
 	}
 
 	private static void assignTextToDigit() {
-		text.append(language.getPositions(positionCount).get(digit));
+		if (isEnglish()) {
+			if (isDashNeeded()) {
+				text.setLength(text.length() - 1);
+				text.append("-");
+			}
+			if (isAndNotNeeded()) 
+				text.setLength(text.length() - 4);
+		}
+		text.append(language.getDigit(positionCount, digit));
+	}
+	
+	private static boolean isEnglish() {
+		return (language instanceof British || language instanceof American );
+	}
+	
+	private static boolean isDashNeeded() {
+		return positionCount == 3 && triple%100 < 99 && triple%100 > 21;
+	}
+	
+	private static boolean isAndNotNeeded() {
+		return positionCount == 3 && triple/100 >= 1 && triple%100 == 0;
 	}
 	
 	private static void assignCardinalNumberText(long currentDigitPosition) {

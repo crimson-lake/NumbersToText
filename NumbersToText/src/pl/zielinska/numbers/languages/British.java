@@ -13,19 +13,15 @@ public class British extends English{
 		
 		billions = new HashMap<>();
 		billions.put(SINGULAR, "miliard ");
-		billions.put(PLURAL, "miliards ");
 
 		trillions = new HashMap<>();
 		trillions.put(SINGULAR, "billion ");
-		trillions.put(PLURAL, "billions ");
 
 		quadrillions = new HashMap<>();
 		quadrillions.put(SINGULAR, "billiard ");
-		quadrillions.put(PLURAL, "billiards ");
 
 		sextillions = new HashMap<>();
 		sextillions.put(SINGULAR, "trillion ");
-		sextillions.put(PLURAL, "trillions ");
 
 		cardinalNumbers = new HashMap<>();
 		cardinalNumbers.put(1_000L, thousands);
@@ -34,10 +30,5 @@ public class British extends English{
 		cardinalNumbers.put(1_000_000_000_000L, trillions);
 		cardinalNumbers.put(1_000_000_000_000_000L, quadrillions);
 		cardinalNumbers.put(1_000_000_000_000_000_000L, sextillions);
-
-		positions = new HashMap<>();
-		positions.put(1, hundreds);
-		positions.put(2, tens);
-		positions.put(3, units);
 	}
 }
