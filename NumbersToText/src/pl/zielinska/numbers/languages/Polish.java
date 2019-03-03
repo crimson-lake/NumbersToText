@@ -53,39 +53,39 @@ public class Polish extends LanguageScheme {
 		hundreds.put(9, "dziewięćset ");
 
 		currency = new HashMap<>();
-		currency.put("singular", "złoty");
-		currency.put("plural", "złote");
-		currency.put("genitiveCase", "złotych");
+		currency.put(SINGULAR, "złoty");
+		currency.put(PLURAL, "złote");
+		currency.put(GENITIVE_CASE, "złotych");
 
 		thousands = new HashMap<>();
-		thousands.put("singular", "tysiąc ");
-		thousands.put("plural", "tysiące ");
-		thousands.put("genitiveCase", "tysięcy ");
+		thousands.put(SINGULAR, "tysiąc ");
+		thousands.put(PLURAL, "tysiące ");
+		thousands.put(GENITIVE_CASE, "tysięcy ");
 
 		millions = new HashMap<>();
-		millions.put("singular", "milion ");
-		millions.put("plural", "milliony ");
-		millions.put("genitiveCase", "milionów ");
+		millions.put(SINGULAR, "milion ");
+		millions.put(PLURAL, "milliony ");
+		millions.put(GENITIVE_CASE, "milionów ");
 
 		billions = new HashMap<>();
-		billions.put("singular", "miliard ");
-		billions.put("plural", "miliardy ");
-		billions.put("genitiveCase", "miliardów ");
+		billions.put(SINGULAR, "miliard ");
+		billions.put(PLURAL, "miliardy ");
+		billions.put(GENITIVE_CASE, "miliardów ");
 
 		trillions = new HashMap<>();
-		trillions.put("singular", "bilion ");
-		trillions.put("plural", "biliony ");
-		trillions.put("genitiveCase", "bilionów ");
+		trillions.put(SINGULAR, "bilion ");
+		trillions.put(PLURAL, "biliony ");
+		trillions.put(GENITIVE_CASE, "bilionów ");
 
 		quadrillions = new HashMap<>();
-		quadrillions.put("singular", "biliard ");
-		quadrillions.put("plural", "biliardy ");
-		quadrillions.put("genitiveCase", "biliardów ");
+		quadrillions.put(SINGULAR, "biliard ");
+		quadrillions.put(PLURAL, "biliardy ");
+		quadrillions.put(GENITIVE_CASE, "biliardów ");
 
 		sextillions = new HashMap<>();
-		sextillions.put("singular", "trylion ");
-		sextillions.put("plural", "tryliony ");
-		sextillions.put("genitiveCase", "trylionów ");
+		sextillions.put(SINGULAR, "trylion ");
+		sextillions.put(PLURAL, "tryliony ");
+		sextillions.put(GENITIVE_CASE, "trylionów ");
 
 		cardinalNumbers = new HashMap<>();
 		cardinalNumbers.put(1_000L, thousands);

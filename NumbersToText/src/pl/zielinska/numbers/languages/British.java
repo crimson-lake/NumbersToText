@@ -8,29 +8,29 @@ public class British extends English{
 		super();
 		
 		currency = new HashMap<>();
-		currency.put("singular", "pound");
-		currency.put("plural", "pounds");
-		currency.put("genitiveCase", "pounds");
+		currency.put(SINGULAR, "pound");
+		currency.put(PLURAL, "pounds");
+		currency.put(GENITIVE_CASE, "pounds");
 		
 		billions = new HashMap<>();
-		billions.put("singular", "miliard ");
-		billions.put("plural", "miliards ");
-		billions.put("genitiveCase", "miliards ");
+		billions.put(SINGULAR, "miliard ");
+		billions.put(PLURAL, "miliards ");
+		billions.put(GENITIVE_CASE, "miliards ");
 
 		trillions = new HashMap<>();
-		trillions.put("singular", "billion ");
-		trillions.put("plural", "billions ");
-		trillions.put("genitiveCase", "billions ");
+		trillions.put(SINGULAR, "billion ");
+		trillions.put(PLURAL, "billions ");
+		trillions.put(GENITIVE_CASE, "billions ");
 
 		quadrillions = new HashMap<>();
-		quadrillions.put("singular", "billiard ");
-		quadrillions.put("plural", "billiards ");
-		quadrillions.put("genitiveCase", "billiards ");
+		quadrillions.put(SINGULAR, "billiard ");
+		quadrillions.put(PLURAL, "billiards ");
+		quadrillions.put(GENITIVE_CASE, "billiards ");
 
 		sextillions = new HashMap<>();
-		sextillions.put("singular", "trillion ");
-		sextillions.put("plural", "trillions ");
-		sextillions.put("genitiveCase", "trillions ");
+		sextillions.put(SINGULAR, "trillion ");
+		sextillions.put(PLURAL, "trillions ");
+		sextillions.put(GENITIVE_CASE, "trillions ");
 
 		cardinalNumbers = new HashMap<>();
 		cardinalNumbers.put(1_000L, thousands);

@@ -7,6 +7,9 @@ public abstract class LanguageScheme {
 	protected Map<String, String> thousands, millions, billions, trillions, quadrillions, sextillions, currency;
 	protected Map<Long, Map<String, String>> cardinalNumbers;
 	protected Map<Integer, Map<Integer, String>> positions;
+	protected static final String SINGULAR = "singular";
+	protected static final String PLURAL = "plural";
+	protected static final String GENITIVE_CASE = "genitiveCase";
 	
 
 	public String getTeens(int i) {
