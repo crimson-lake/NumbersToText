@@ -10,7 +10,7 @@ public abstract class NumbersUtil  {
 	private static StringBuilder text = new StringBuilder();
 	private static int digit;
 	private static int triple;
-	private static int positionCount = 2;
+	private static int positionCount;
 	private static boolean teen = false;
 	private static LanguageScheme language;
 	
@@ -39,20 +39,16 @@ public abstract class NumbersUtil  {
 	
 	private static void convertNumberToText(long number) {
 		final long NUMBER = number;
-		final long maxLongSignificantDigit = 1_000_000_000_000_000_000L;
+		positionCount = getFirstPosition(number);
 		final long minLongSignificantDigit = 1L;
-		long currentDigitPosition = maxLongSignificantDigit;
+		long currentDigitPosition = firstSignificantDigit(number);
 		while (currentDigitPosition >= minLongSignificantDigit) {
-			positionCount++;
 			getDigit(number, currentDigitPosition);
 			addToTriple();
 			if (isTeen())
 				teen = true;
-			else if (isDigitOfANumber()) {
-				if (teen)
-					assignTextToTeen();
-				else
-					assignTextToDigit();
+			else {
+				assignTextToDigit();
 				assignCardinalNumberText(currentDigitPosition);
 				if (currentDigitPosition == minLongSignificantDigit)
 					break;
@@ -61,13 +57,33 @@ public abstract class NumbersUtil  {
 			number = moveToNextDigit(number, currentDigitPosition);
 			resetTripleAndPositionCount();
 			currentDigitPosition = nextSignificantDigitPosition(currentDigitPosition);
+			positionCount++;
 		}
 		deleteSpareComma();
 		assignCurrencyText(NUMBER);
 	}
 	
+	private static long numberOfDigits(long number) {
+		return (long) Math.log10(number);
+	}
+	
+	private static long firstSignificantDigit(long number) {
+		return (long) Math.pow(10, numberOfDigits(number));
+	}
+	
 	private static long nextSignificantDigitPosition(long currentDigitPosition) {
 		return currentDigitPosition/10;
+	}
+	
+	private static int getFirstPosition(long number) {
+		long numberOfDigits = numberOfDigits(number)+1; 
+		if (numberOfDigits%3 == 0)
+			return 1;
+		else if ((numberOfDigits + 1)%3 == 0)
+			return 2;
+		else 
+			return 3;
+		
 	}
 	
 	private static void getDigit(long number, long currentDigitPosition) {
@@ -80,10 +96,6 @@ public abstract class NumbersUtil  {
 	
 	private static boolean isTeen() {
 		return positionCount == 2 && digit == 1;
-	}
-	
-	private static boolean isDigitOfANumber() {
-		return !((digit == 0 && text.length() == 0) && !teen);
 	}
 	
 	private static void assignTextToTeen() {
@@ -100,7 +112,10 @@ public abstract class NumbersUtil  {
 			if (isAndNotNeeded()) 
 				text.setLength(text.length() - 4);
 		}
-		text.append(language.getDigit(positionCount, digit));
+		if (teen)
+			assignTextToTeen();
+		else
+			text.append(language.getDigit(positionCount, digit));
 	}
 	
 	private static boolean isEnglish() {
