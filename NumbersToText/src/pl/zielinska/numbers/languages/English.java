@@ -59,9 +59,9 @@ abstract class English extends LanguageScheme {
 		millions.put(SINGULAR, "million, ");
 
 		positions = new HashMap<>();
-		positions.put(1, hundreds);
-		positions.put(2, tens);
-		positions.put(3, units);
+		positions.put(2, hundreds);
+		positions.put(1, tens);
+		positions.put(0, units);
 	}
 	
 	@Override

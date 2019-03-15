@@ -10,7 +10,7 @@ public abstract class NumbersUtil  {
 	private static StringBuilder text = new StringBuilder();
 	private static int digit;
 	private static int triple;
-	private static int positionCount;
+	private static int positionWeight;
 	private static boolean teen = false;
 	private static LanguageScheme language;
 	
@@ -39,7 +39,7 @@ public abstract class NumbersUtil  {
 	
 	private static void convertNumberToText(long number) {
 		final long NUMBER = number;
-		positionCount = getFirstPosition(number);
+		positionWeight = getFirstPosition(number);
 		final long minLongSignificantDigit = 1L;
 		long currentDigitPosition = firstSignificantDigit(number);
 		while (currentDigitPosition >= minLongSignificantDigit) {
@@ -55,9 +55,9 @@ public abstract class NumbersUtil  {
 				teen = false;
 			}
 			number = moveToNextDigit(number, currentDigitPosition);
-			resetTripleAndPositionCount();
+			resetTripleAndPositionWeight();
 			currentDigitPosition = nextSignificantDigitPosition(currentDigitPosition);
-			positionCount++;
+			positionWeight--;
 		}
 		deleteSpareComma();
 		assignCurrencyText(NUMBER);
@@ -78,11 +78,11 @@ public abstract class NumbersUtil  {
 	private static int getFirstPosition(long number) {
 		long numberOfDigits = numberOfDigits(number)+1; 
 		if (numberOfDigits%3 == 0)
-			return 1;
-		else if ((numberOfDigits + 1)%3 == 0)
 			return 2;
+		else if ((numberOfDigits + 1)%3 == 0)
+			return 1;
 		else 
-			return 3;
+			return 0;
 		
 	}
 	
@@ -91,11 +91,11 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static void addToTriple() {
-		triple += digit * (int) Math.pow(10, 3 - positionCount);
+		triple += digit * (int) Math.pow(10, positionWeight);
 	}
 	
 	private static boolean isTeen() {
-		return positionCount == 2 && digit == 1;
+		return positionWeight == 1 && digit == 1;
 	}
 	
 	private static void assignTextToTeen() {
@@ -104,6 +104,14 @@ public abstract class NumbersUtil  {
 	}
 
 	private static void assignTextToDigit() {
+		handlingEnglishRules();
+		if (teen)
+			assignTextToTeen();
+		else
+			text.append(language.getDigit(positionWeight, digit));
+	}
+	
+	private static void handlingEnglishRules() {
 		if (isEnglish()) {
 			if (isDashNeeded()) {
 				text.setLength(text.length() - 1);
@@ -112,10 +120,6 @@ public abstract class NumbersUtil  {
 			if (isAndNotNeeded()) 
 				text.setLength(text.length() - 4);
 		}
-		if (teen)
-			assignTextToTeen();
-		else
-			text.append(language.getDigit(positionCount, digit));
 	}
 	
 	private static boolean isEnglish() {
@@ -123,11 +127,11 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static boolean isDashNeeded() {
-		return positionCount == 3 && triple%100 < 99 && triple%100 > 21;
+		return positionWeight == 0 && triple%100 < 99 && triple%100 > 21;
 	}
 	
 	private static boolean isAndNotNeeded() {
-		return positionCount == 3 && triple/100 >= 1 && triple%100 == 0;
+		return positionWeight == 0 && triple/100 >= 1 && triple%100 == 0;
 	}
 	
 	private static void assignCardinalNumberText(long currentDigitPosition) {
@@ -162,10 +166,10 @@ public abstract class NumbersUtil  {
 		return number - digit*currentDigitPosition;
 	}
 	
-	private static void resetTripleAndPositionCount() {
-		if (positionCount == 3) {
+	private static void resetTripleAndPositionWeight() {
+		if (positionWeight == 0) {
 			triple = 0;
-			positionCount = 0;
+			positionWeight = 3;
 		}
 	}
 

@@ -96,9 +96,9 @@ public class Polish extends LanguageScheme {
 		cardinalNumbers.put(1_000_000_000_000_000_000L, sextillions);
 
 		positions = new HashMap<>();
-		positions.put(1, hundreds);
-		positions.put(2, tens);
-		positions.put(3, units);
+		positions.put(2, hundreds);
+		positions.put(1, tens);
+		positions.put(0, units);
 
 	}
 }
