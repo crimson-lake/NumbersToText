@@ -1,4 +1,4 @@
-package pl.zielinska.numbers.testsPL;
+package pl.zielinska.numbers.tests.pl;
 
 import static org.junit.Assert.*;
 
@@ -7,10 +7,11 @@ import org.junit.Test;
 import pl.zielinska.numbers.languages.Languages;
 import pl.zielinska.numbers.util.NumbersUtil;
 
-public class Test1 {
+public class Test12 {
 
 	@Test
 	public void testTextValue() {
-		assertEquals("jeden złoty", NumbersUtil.textValue(Languages.PL, 1L));
+		assertEquals("dwanaście złotych", NumbersUtil.textValue(Languages.PL, 12L));
 	}
+
 }

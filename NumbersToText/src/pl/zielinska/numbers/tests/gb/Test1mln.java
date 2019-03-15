@@ -1,7 +1,6 @@
-package pl.zielinska.numbers.testsPL;
+package pl.zielinska.numbers.tests.gb;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import pl.zielinska.numbers.languages.Languages;
@@ -11,7 +10,7 @@ public class Test1mln {
 
 	@Test
 	public void testTextValue() {
-		assertEquals("jeden milion złotych", NumbersUtil.textValue(Languages.PL, 1_000_000L));
+		assertEquals("one million pounds", NumbersUtil.textValue(Languages.GB, 1_000_000L));
 	}
 
 }
