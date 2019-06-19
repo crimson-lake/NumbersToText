@@ -21,7 +21,9 @@ public abstract class NumbersUtil  {
 	public static String textValue(Languages lingo, long number) {
 		language = selectLanguage(lingo);
 		convertNumberToText(number);
-		return text.toString();
+		String result = text.toString();
+		text.setLength(0);
+		return result;
 	}
 	
 	private static LanguageScheme selectLanguage(Languages lingo) {
