@@ -43,7 +43,7 @@ public class Polish extends LanguageScheme {
 		hundreds = new HashMap<>();
 		hundreds.put(0, "");
 		hundreds.put(1, "sto ");
-		hundreds.put(2, "dzwieście ");
+		hundreds.put(2, "dwieście ");
 		hundreds.put(3, "trzysta ");
 		hundreds.put(4, "czterysta ");
 		hundreds.put(5, "pięćset ");
