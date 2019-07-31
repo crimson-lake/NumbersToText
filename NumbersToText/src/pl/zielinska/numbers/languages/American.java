@@ -12,6 +12,11 @@ public class American extends English{
 					.put(SINGULAR, "dollar")
 					.put(PLURAL, "dollars")
 					.build();
+		
+		coins = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "cent")
+					.put(PLURAL, "cents")
+					.build();
 
 		billions = new ImmutableMapBuilder<String, String>()
 					.put(SINGULAR, "billion, ")

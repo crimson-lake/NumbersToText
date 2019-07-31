@@ -2,6 +2,8 @@ package pl.zielinska.numbers.tests;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import pl.zielinska.numbers.languages.Languages;
@@ -39,4 +41,9 @@ public class TestUS {
 		assertEquals("nine quadrillion, seven hundred and two dollars", NumbersUtil.textValue(Languages.US, 9_000_000_000_000_702L));
 	}
 
+	@Test
+	public void test12B77() {
+		assertEquals("twelve dollars and seventy-seven cents", NumbersUtil.textValue(Languages.US, BigDecimal.valueOf(12.77)));
+	}
+	
 }

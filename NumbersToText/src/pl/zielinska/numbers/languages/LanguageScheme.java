@@ -4,7 +4,7 @@ import java.util.Map;
 
 public abstract class LanguageScheme {
 	protected Map<Integer, String> units, tens, teens, hundreds;
-	protected Map<String, String> thousands, millions, billions, trillions, quadrillions, sextillions, currency;
+	protected Map<String, String> thousands, millions, billions, trillions, quadrillions, sextillions, coins, currency;
 	protected Map<Long, Map<String, String>> cardinalNumbers;
 	protected Map<Integer, Map<Integer, String>> positions;
 	protected static final String SINGULAR = "singular";
@@ -30,6 +30,10 @@ public abstract class LanguageScheme {
 
 	public String getCurrency(String s) {
 		return currency.get(s);
+	}
+	
+	public String getCoins(String s) {
+		return coins.get(s);
 	}
 	
 	public Map<Long, Map<String, String>> getCardinalNumbers() {

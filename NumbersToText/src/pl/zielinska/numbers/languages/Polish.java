@@ -63,6 +63,12 @@ public class Polish extends LanguageScheme {
 					.put(PLURAL, "złote")
 					.put(GENITIVE_CASE, "złotych")
 					.build();
+		
+		coins = new ImmutableMapBuilder<String, String>()
+				.put(SINGULAR, "grosz")
+				.put(PLURAL, "grosze")
+				.put(GENITIVE_CASE, "groszy")
+				.build();
 
 		thousands = new ImmutableMapBuilder<String, String>()
 					.put(SINGULAR, "tysiąc ")
@@ -72,7 +78,7 @@ public class Polish extends LanguageScheme {
 
 		millions = new ImmutableMapBuilder<String, String>()
 					.put(SINGULAR, "milion ")
-					.put(PLURAL, "milliony ")
+					.put(PLURAL, "miliony ")
 					.put(GENITIVE_CASE, "milionów ")
 					.build();
 

@@ -1,6 +1,5 @@
 package pl.zielinska.numbers.languages;
 
-import java.util.HashMap;
 import java.util.Map;
 
 abstract class English extends LanguageScheme {
@@ -85,6 +84,19 @@ abstract class English extends LanguageScheme {
 				return currency.get(s);
 			case GENITIVE_CASE:
 				return currency.get(PLURAL);
+			default:
+				return null;
+		}
+	}
+	
+	@Override
+	public String getCoins(String s) {
+		switch (s) {
+			case SINGULAR:
+			case PLURAL:
+				return coins.get(s);
+			case GENITIVE_CASE:
+				return coins.get(PLURAL);
 			default:
 				return null;
 		}

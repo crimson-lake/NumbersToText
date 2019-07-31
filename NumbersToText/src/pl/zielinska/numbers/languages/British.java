@@ -13,6 +13,11 @@ public class British extends English{
 					.put(PLURAL, "pounds")
 					.build();
 		
+		coins = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "pence")
+					.put(PLURAL, "pences")
+					.build();
+		
 		billions = new ImmutableMapBuilder<String, String>()
 					.put(SINGULAR, "miliard, ")
 					.build();
