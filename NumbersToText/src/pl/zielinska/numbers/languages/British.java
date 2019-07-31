@@ -1,6 +1,5 @@
 package pl.zielinska.numbers.languages;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class British extends English{

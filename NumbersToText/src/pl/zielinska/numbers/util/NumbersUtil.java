@@ -19,26 +19,13 @@ public final class NumbersUtil  {
 	}
 	
 	public static String textValue(Languages lingo, long number) {
-		language = selectLanguage(lingo);
+		language = LanguageScheme.getLanguage(lingo);
 		convertNumberToText(number);
 		assignCurrencyText(number);
 		String result = text.toString();
 		text.setLength(0);
 		teen = false;
 		return result;
-	}
-	
-	private static LanguageScheme selectLanguage(Languages lingo) {
-		switch (lingo) {
-			case PL: 
-				return Polish.INSTANCE;
-			case US: 
-				return American.INSTANCE;
-			case GB:
-				return British.INSTANCE;
-			default:
-				return null;
-		}	
 	}
 	
 	private static void convertNumberToText(long number) {

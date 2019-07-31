@@ -11,7 +11,19 @@ public abstract class LanguageScheme {
 	protected static final String PLURAL = "plural";
 	protected static final String GENITIVE_CASE = "genitiveCase";
 	
-
+	public static LanguageScheme getLanguage(Languages lingo) {
+		switch (lingo) {
+		case PL: 
+			return Polish.INSTANCE;
+		case US: 
+			return American.INSTANCE;
+		case GB:
+			return British.INSTANCE;
+		default:
+			return null;
+		}	
+	}
+	
 	public String getTeens(int i) {
 		return teens.get(i);
 	}
