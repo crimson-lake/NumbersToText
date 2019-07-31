@@ -13,16 +13,28 @@ public final class NumbersUtil  {
 	
 	
 	public static String textValue(Languages lingo, long number) {
-		return new TextBuilder(lingo)
-				.append(number)
+		TextBuilder text = new TextBuilder(lingo);
+		if (number < 0) {
+			text.append("minus ");
+			number = -number;
+		}
+		return text.append(number)
 				.currency(number)
 				.build();
 	}
 	
 	public static String textValue(Languages lingo, BigDecimal number) {
-		TextBuilder text = new TextBuilder(lingo)
-				.append(number.longValue())
-				.currency(number.longValue());
+		
+		TextBuilder text = new TextBuilder(lingo);
+		
+		if (number.compareTo(BigDecimal.ZERO) < 0) {
+			text.append("minus ");
+			number = number.negate();
+		}
+		
+		text.append(number.longValue())
+			.currency(number.longValue());
+		
 		if (!BigDecimal.ZERO.equals(decimal(number))) {
 			final long decimal = decimal(number).longValue();
 			
