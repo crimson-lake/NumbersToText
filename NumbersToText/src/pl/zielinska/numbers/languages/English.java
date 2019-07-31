@@ -1,67 +1,75 @@
 package pl.zielinska.numbers.languages;
 
 import java.util.HashMap;
+import java.util.Map;
 
 abstract class English extends LanguageScheme {
 	
 	English() {
-		units = new HashMap<>();
-		units.put(0, "");
-		units.put(1, "one ");
-		units.put(2, "two ");
-		units.put(3, "three ");
-		units.put(4, "four ");
-		units.put(5, "five ");
-		units.put(6, "six ");
-		units.put(7, "seven ");
-		units.put(8, "eight ");
-		units.put(9, "nine ");
+		units = new ImmutableMapBuilder<Integer, String>()
+					.put(0, "")
+					.put(1, "one ")
+					.put(2, "two ")
+					.put(3, "three ")
+					.put(4, "four ")
+					.put(5, "five ")
+					.put(6, "six ")
+					.put(7, "seven ")
+					.put(8, "eight ")
+					.put(9, "nine ")
+					.build();
 
-		teens = new HashMap<>();
-		teens.put(10, "ten ");
-		teens.put(11, "eleven ");
-		teens.put(12, "twelve ");
-		teens.put(13, "thirteen ");
-		teens.put(14, "fourteen ");
-		teens.put(15, "fifteen ");
-		teens.put(16, "sixteen ");
-		teens.put(17, "seventeen ");
-		teens.put(18, "eighteen ");
-		teens.put(19, "nineteen ");
+		teens = new ImmutableMapBuilder<Integer, String>()
+					.put(10, "ten ")
+					.put(11, "eleven ")
+					.put(12, "twelve ")
+					.put(13, "thirteen ")
+					.put(14, "fourteen ")
+					.put(15, "fifteen ")
+					.put(16, "sixteen ")
+					.put(17, "seventeen ")
+					.put(18, "eighteen ")
+					.put(19, "nineteen ")
+					.build();
 
-		tens = new HashMap<>();
-		tens.put(0, "");
-		tens.put(2, "twenty ");
-		tens.put(3, "thirty ");
-		tens.put(4, "fourty ");
-		tens.put(5, "fifty ");
-		tens.put(6, "sixty ");
-		tens.put(7, "seventy ");
-		tens.put(8, "eighty ");
-		tens.put(9, "ninety ");
+		tens = new ImmutableMapBuilder<Integer, String>()
+					.put(0, "")
+					.put(2, "twenty ")
+					.put(3, "thirty ")
+					.put(4, "fourty ")
+					.put(5, "fifty ")
+					.put(6, "sixty ")
+					.put(7, "seventy ")
+					.put(8, "eighty ")
+					.put(9, "ninety ")
+					.build();
 
-		hundreds = new HashMap<>();
-		hundreds.put(0, "");
-		hundreds.put(1, "one hundred and ");
-		hundreds.put(2, "two hundred and ");
-		hundreds.put(3, "three hundred and ");
-		hundreds.put(4, "four hundred and ");
-		hundreds.put(5, "five hundred and ");
-		hundreds.put(6, "six hundred and ");
-		hundreds.put(7, "seven hundred and ");
-		hundreds.put(8, "eight hundred and ");
-		hundreds.put(9, "nine hundred and ");
+		hundreds = new ImmutableMapBuilder<Integer, String>()
+					.put(0, "")
+					.put(1, "one hundred and ")
+					.put(2, "two hundred and ")
+					.put(3, "three hundred and ")
+					.put(4, "four hundred and ")
+					.put(5, "five hundred and ")
+					.put(6, "six hundred and ")
+					.put(7, "seven hundred and ")
+					.put(8, "eight hundred and ")
+					.put(9, "nine hundred and ")
+					.build();
 		
-		thousands = new HashMap<>();
-		thousands.put(SINGULAR, "thousand, ");
+		thousands = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "thousand, ")
+					.build();
 
-		millions = new HashMap<>();
-		millions.put(SINGULAR, "million, ");
+		millions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "million, ")
+					.build();
 
-		positions = new HashMap<>();
-		positions.put(2, hundreds);
-		positions.put(1, tens);
-		positions.put(0, units);
+		positions = new ImmutableMapBuilder<Integer, Map<Integer, String>>()
+					.put(2, hundreds)
+					.put(1, tens)
+					.put(0, units)
+					.build();
 	}
 	
 	@Override

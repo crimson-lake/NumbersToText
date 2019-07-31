@@ -1,6 +1,6 @@
 package pl.zielinska.numbers.languages;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class American extends English{
 	public static final American INSTANCE = new American();
@@ -8,29 +8,35 @@ public class American extends English{
 	private American() {
 		super();
 		
-		currency = new HashMap<>();
-		currency.put(SINGULAR, "dollar");
-		currency.put(PLURAL, "dollars");
+		currency = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "dollar")
+					.put(PLURAL, "dollars")
+					.build();
 
-		billions = new HashMap<>();
-		billions.put(SINGULAR, "billion, ");
+		billions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "billion, ")
+					.build();
 
-		trillions = new HashMap<>();
-		trillions.put(SINGULAR, "trillion, ");
+		trillions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "trillion, ")
+					.build();
 
-		quadrillions = new HashMap<>();
-		quadrillions.put(SINGULAR, "quadrillion, ");
+		quadrillions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "quadrillion, ")
+					.build();
 
-		sextillions = new HashMap<>();
-		sextillions.put(SINGULAR, "sextillion, ");
+		sextillions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "sextillion, ")
+					.build();
 
-		cardinalNumbers = new HashMap<>();
-		cardinalNumbers.put(1_000L, thousands);
-		cardinalNumbers.put(1_000_000L, millions);
-		cardinalNumbers.put(1_000_000_000L, billions);
-		cardinalNumbers.put(1_000_000_000_000L, trillions);
-		cardinalNumbers.put(1_000_000_000_000_000L, quadrillions);
-		cardinalNumbers.put(1_000_000_000_000_000_000L, sextillions);
+		cardinalNumbers = new ImmutableMapBuilder<Long, Map<String, String>>()
+					.put(1_000L, thousands)
+					.put(1_000_000L, millions)
+					.put(1_000_000_000L, billions)
+					.put(1_000_000_000_000L, trillions)
+					.put(1_000_000_000_000_000L, quadrillions)
+					.put(1_000_000_000_000_000_000L, sextillions)
+					.build();
 	}
 	
 }

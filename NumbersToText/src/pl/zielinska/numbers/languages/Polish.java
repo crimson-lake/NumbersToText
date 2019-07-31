@@ -1,105 +1,119 @@
 package pl.zielinska.numbers.languages;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Polish extends LanguageScheme {
 	public static final Polish INSTANCE = new Polish();
 	
 	private Polish() {
-		units = new HashMap<>();
-		units.put(0, "");
-		units.put(1, "jeden ");
-		units.put(2, "dwa ");
-		units.put(3, "trzy ");
-		units.put(4, "cztery ");
-		units.put(5, "pięć ");
-		units.put(6, "sześć ");
-		units.put(7, "siedem ");
-		units.put(8, "osiem ");
-		units.put(9, "dziewięć ");
+		units = new ImmutableMapBuilder<Integer, String>()
+					.put(0, "")
+					.put(1, "jeden ")
+					.put(2, "dwa ")
+					.put(3, "trzy ")
+					.put(4, "cztery ")
+					.put(5, "pięć ")
+					.put(6, "sześć ")
+					.put(7, "siedem ")
+					.put(8, "osiem ")
+					.put(9, "dziewięć ")
+					.build();
 
-		teens = new HashMap<>();
-		teens.put(10, "dziesięć ");
-		teens.put(11, "jedynaście ");
-		teens.put(12, "dwanaście ");
-		teens.put(13, "trzynaście ");
-		teens.put(14, "czternaście ");
-		teens.put(15, "piętnaście ");
-		teens.put(16, "szesnaście ");
-		teens.put(17, "siedemnaście ");
-		teens.put(18, "osiemnaście ");
-		teens.put(19, "dziewiętnaście ");
+		teens = new ImmutableMapBuilder<Integer, String>()
+					.put(10, "dziesięć ")
+					.put(11, "jedynaście ")
+					.put(12, "dwanaście ")
+					.put(13, "trzynaście ")
+					.put(14, "czternaście ")
+					.put(15, "piętnaście ")
+					.put(16, "szesnaście ")
+					.put(17, "siedemnaście ")
+					.put(18, "osiemnaście ")
+					.put(19, "dziewiętnaście ")
+					.build();
+		
 
-		tens = new HashMap<>();
-		tens.put(0, "");
-		tens.put(2, "dwadzieścia ");
-		tens.put(3, "trzydzieści ");
-		tens.put(4, "czterdzieści ");
-		tens.put(5, "pięćdziesiąt ");
-		tens.put(6, "sześćdziesiąt ");
-		tens.put(7, "siedemdziesiąt ");
-		tens.put(8, "osiemdziesiąt ");
-		tens.put(9, "dziewięćdziesiąt ");
+		tens = new ImmutableMapBuilder<Integer, String>()
+					.put(0, "")
+					.put(2, "dwadzieścia ")
+					.put(3, "trzydzieści ")
+					.put(4, "czterdzieści ")
+					.put(5, "pięćdziesiąt ")
+					.put(6, "sześćdziesiąt ")
+					.put(7, "siedemdziesiąt ")
+					.put(8, "osiemdziesiąt ")
+					.put(9, "dziewięćdziesiąt ")
+					.build();
 
-		hundreds = new HashMap<>();
-		hundreds.put(0, "");
-		hundreds.put(1, "sto ");
-		hundreds.put(2, "dwieście ");
-		hundreds.put(3, "trzysta ");
-		hundreds.put(4, "czterysta ");
-		hundreds.put(5, "pięćset ");
-		hundreds.put(6, "sześćset ");
-		hundreds.put(7, "siedemset ");
-		hundreds.put(8, "osiemset ");
-		hundreds.put(9, "dziewięćset ");
+		hundreds = new ImmutableMapBuilder<Integer, String>()
+					.put(0, "")
+					.put(1, "sto ")
+					.put(2, "dwieście ")
+					.put(3, "trzysta ")
+					.put(4, "czterysta ")
+					.put(5, "pięćset ")
+					.put(6, "sześćset ")
+					.put(7, "siedemset ")
+					.put(8, "osiemset ")
+					.put(9, "dziewięćset ")
+					.build();
 
-		currency = new HashMap<>();
-		currency.put(SINGULAR, "złoty");
-		currency.put(PLURAL, "złote");
-		currency.put(GENITIVE_CASE, "złotych");
+		currency = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "złoty")
+					.put(PLURAL, "złote")
+					.put(GENITIVE_CASE, "złotych")
+					.build();
 
-		thousands = new HashMap<>();
-		thousands.put(SINGULAR, "tysiąc ");
-		thousands.put(PLURAL, "tysiące ");
-		thousands.put(GENITIVE_CASE, "tysięcy ");
+		thousands = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "tysiąc ")
+					.put(PLURAL, "tysiące ")
+					.put(GENITIVE_CASE, "tysięcy ")
+					.build();
 
-		millions = new HashMap<>();
-		millions.put(SINGULAR, "milion ");
-		millions.put(PLURAL, "milliony ");
-		millions.put(GENITIVE_CASE, "milionów ");
+		millions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "milion ")
+					.put(PLURAL, "milliony ")
+					.put(GENITIVE_CASE, "milionów ")
+					.build();
 
-		billions = new HashMap<>();
-		billions.put(SINGULAR, "miliard ");
-		billions.put(PLURAL, "miliardy ");
-		billions.put(GENITIVE_CASE, "miliardów ");
+		billions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "miliard ")
+					.put(PLURAL, "miliardy ")
+					.put(GENITIVE_CASE, "miliardów ")
+					.build();
 
-		trillions = new HashMap<>();
-		trillions.put(SINGULAR, "bilion ");
-		trillions.put(PLURAL, "biliony ");
-		trillions.put(GENITIVE_CASE, "bilionów ");
+		trillions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "bilion ")
+					.put(PLURAL, "biliony ")
+					.put(GENITIVE_CASE, "bilionów ")
+					.build();
 
-		quadrillions = new HashMap<>();
-		quadrillions.put(SINGULAR, "biliard ");
-		quadrillions.put(PLURAL, "biliardy ");
-		quadrillions.put(GENITIVE_CASE, "biliardów ");
+		quadrillions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "biliard ")
+					.put(PLURAL, "biliardy ")
+					.put(GENITIVE_CASE, "biliardów ")
+					.build();
 
-		sextillions = new HashMap<>();
-		sextillions.put(SINGULAR, "trylion ");
-		sextillions.put(PLURAL, "tryliony ");
-		sextillions.put(GENITIVE_CASE, "trylionów ");
+		sextillions = new ImmutableMapBuilder<String, String>()
+					.put(SINGULAR, "trylion ")
+					.put(PLURAL, "tryliony ")
+					.put(GENITIVE_CASE, "trylionów ")
+					.build();
 
-		cardinalNumbers = new HashMap<>();
-		cardinalNumbers.put(1_000L, thousands);
-		cardinalNumbers.put(1_000_000L, millions);
-		cardinalNumbers.put(1_000_000_000L, billions);
-		cardinalNumbers.put(1_000_000_000_000L, trillions);
-		cardinalNumbers.put(1_000_000_000_000_000L, quadrillions);
-		cardinalNumbers.put(1_000_000_000_000_000_000L, sextillions);
+		cardinalNumbers = new ImmutableMapBuilder<Long, Map<String, String>>()
+					.put(1_000L, thousands)
+					.put(1_000_000L, millions)
+					.put(1_000_000_000L, billions)
+					.put(1_000_000_000_000L, trillions)
+					.put(1_000_000_000_000_000L, quadrillions)
+					.put(1_000_000_000_000_000_000L, sextillions)
+					.build();
 
-		positions = new HashMap<>();
-		positions.put(2, hundreds);
-		positions.put(1, tens);
-		positions.put(0, units);
+		positions = new ImmutableMapBuilder<Integer, Map<Integer, String>>()
+					.put(2, hundreds)
+					.put(1, tens)
+					.put(0, units)
+					.build();
 
 	}
 }
