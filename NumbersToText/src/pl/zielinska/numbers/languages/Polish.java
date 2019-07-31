@@ -3,8 +3,9 @@ package pl.zielinska.numbers.languages;
 import java.util.HashMap;
 
 public class Polish extends LanguageScheme {
+	public static final Polish INSTANCE = new Polish();
 	
-	public Polish() {
+	private Polish() {
 		units = new HashMap<>();
 		units.put(0, "");
 		units.put(1, "jeden ");

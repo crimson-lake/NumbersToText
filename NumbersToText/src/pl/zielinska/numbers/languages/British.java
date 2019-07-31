@@ -3,8 +3,9 @@ package pl.zielinska.numbers.languages;
 import java.util.HashMap;
 
 public class British extends English{
+	public static final British INSTANCE = new British();
 	
-	public British() {
+	private British() {
 		super();
 		
 		currency = new HashMap<>();

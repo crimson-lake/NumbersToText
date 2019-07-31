@@ -6,7 +6,7 @@ import pl.zielinska.numbers.languages.LanguageScheme;
 import pl.zielinska.numbers.languages.Languages;
 import pl.zielinska.numbers.languages.Polish;
 
-public abstract class NumbersUtil  {
+public final class NumbersUtil  {
 	private static StringBuilder text = new StringBuilder();
 	private static int digit;
 	private static int triple;
@@ -21,6 +21,7 @@ public abstract class NumbersUtil  {
 	public static String textValue(Languages lingo, long number) {
 		language = selectLanguage(lingo);
 		convertNumberToText(number);
+		assignCurrencyText(number);
 		String result = text.toString();
 		text.setLength(0);
 		return result;
@@ -29,40 +30,41 @@ public abstract class NumbersUtil  {
 	private static LanguageScheme selectLanguage(Languages lingo) {
 		switch (lingo) {
 			case PL: 
-				return new Polish();
+				return Polish.INSTANCE;
 			case US: 
-				return new American();
+				return American.INSTANCE;
 			case GB:
-				return new British();
+				return British.INSTANCE;
 			default:
 				return null;
 		}	
 	}
 	
 	private static void convertNumberToText(long number) {
-		final long NUMBER = number;
 		positionWeight = getFirstPosition(number);
-		final long minLongSignificantDigit = 1L;
-		long currentDigitPosition = firstSignificantDigit(number);
-		while (currentDigitPosition >= minLongSignificantDigit) {
-			getDigit(number, currentDigitPosition);
-			addToTriple();
-			if (isTeen())
-				teen = true;
-			else {
-				assignTextToDigit();
-				assignCardinalNumberText(currentDigitPosition);
-				if (currentDigitPosition == minLongSignificantDigit)
-					break;
-				teen = false;
+		if(number == 0) {
+			text.append("zero");
+		} else {
+			final long minLongSignificantDigit = 1L;
+			long currentDigitPosition = firstSignificantDigit(number);
+			while (currentDigitPosition >= minLongSignificantDigit) {
+				getDigit(number, currentDigitPosition);
+				addToTriple();
+				if (isTeen())
+					teen = true;
+				else {
+					assignTextToDigit();
+					assignCardinalNumberText(currentDigitPosition);
+					if (currentDigitPosition == minLongSignificantDigit)
+						break;
+					teen = false;
+				}
+				number = moveToNextDigit(number, currentDigitPosition);
+				resetTripleAndPositionWeight();
+				currentDigitPosition = nextSignificantDigitPosition(currentDigitPosition);
+				positionWeight--;
 			}
-			number = moveToNextDigit(number, currentDigitPosition);
-			resetTripleAndPositionWeight();
-			currentDigitPosition = nextSignificantDigitPosition(currentDigitPosition);
-			positionWeight--;
 		}
-		deleteSpareComma();
-		assignCurrencyText(NUMBER);
 	}
 	
 	private static long numberOfDigits(long number) {
@@ -129,11 +131,11 @@ public abstract class NumbersUtil  {
 	}
 	
 	private static boolean isDashNeeded() {
-		return positionWeight == 0 && triple%100 < 99 && triple%100 > 21;
+		return positionWeight == 0 && triple%100 < 99 && triple%100 > 21 && text.length() !=0;
 	}
 	
 	private static boolean isAndNotNeeded() {
-		return positionWeight == 0 && triple/100 >= 1 && triple%100 == 0;
+		return positionWeight == 0 && triple/100 >= 1 && triple%100 == 0 && text.length() !=0;
 	}
 	
 	private static void assignCardinalNumberText(long currentDigitPosition) {
@@ -151,13 +153,14 @@ public abstract class NumbersUtil  {
 		text.append(language.getCardinalNumbers(currentDigitPosition, form));
 	}
 		
-	private static void assignCurrencyText(long NUMBER) {
-		if (NUMBER == 1) 
+	private static void assignCurrencyText(long number) {
+		if (number == 1) 
 			addCurrency("singular");
 		else if (digit > 1 && digit < 5 && !teen) 
 			addCurrency("plural");
 		else 
 			addCurrency("genitiveCase");
+		deleteSpareComma();
 	}
 	
 	private static void addCurrency(String form) {
