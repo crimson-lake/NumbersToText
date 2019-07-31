@@ -24,6 +24,7 @@ public final class NumbersUtil  {
 		assignCurrencyText(number);
 		String result = text.toString();
 		text.setLength(0);
+		teen = false;
 		return result;
 	}
 	
@@ -58,6 +59,7 @@ public final class NumbersUtil  {
 					if (currentDigitPosition == minLongSignificantDigit)
 						break;
 					teen = false;
+					
 				}
 				number = moveToNextDigit(number, currentDigitPosition);
 				resetTripleAndPositionWeight();
@@ -65,6 +67,7 @@ public final class NumbersUtil  {
 				positionWeight--;
 			}
 		}
+		deleteSpareComma();
 	}
 	
 	private static long numberOfDigits(long number) {
