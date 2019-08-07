@@ -35,7 +35,7 @@ public final class NumbersUtil  {
 		text.append(number.longValue())
 			.currency(number.longValue());
 		
-		if (!BigDecimal.ZERO.equals(decimal(number))) {
+		if (BigDecimal.ZERO.compareTo(decimal(number)) != 0) {
 			final long decimal = decimal(number).longValue();
 			
 			if (lingo == Languages.PL)
