@@ -1,4 +1,1 @@
-A simple library for translating numbers into words. Library enables translation in Polish and English (both American and British)
-for positive numbers from Long type range. It can also add valid currency at the end of the number. 
-
-Extended version of project made as homework from the ALX workshop. 
+A simple library for translating numbers into text form with valid currency. Works with BigDecimal input. 
